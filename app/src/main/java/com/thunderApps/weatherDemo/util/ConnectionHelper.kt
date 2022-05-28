@@ -6,10 +6,11 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
+import android.util.Log
 
 /** Helper class which keeps track of network state and notifies listeners: [ConnectionStateListener] */
 class ConnectionHelper(private val appContext: Context, val listener: ConnectionStateListener) {
-
+    private val TAG = "ConnectionHelper"
     private val connectionManager: ConnectivityManager = appContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     private val receiver = ConnectivityReceiver()
     private var currentState: Boolean = connectionManager.activeNetworkInfo?.isConnected?:false
@@ -32,15 +33,16 @@ class ConnectionHelper(private val appContext: Context, val listener: Connection
                 listener.onStateChange(state)
                 currentState = state
             }
-
         }
     }
 
     fun startListening() {
+        Log.d(TAG, "startListening: ")
         appContext.registerReceiver(receiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
     }
 
     fun stopListening() {
+        Log.d(TAG, "stopListening: ")
         appContext.unregisterReceiver(receiver)
     }
 

@@ -24,7 +24,9 @@ class AppModule {
             ctx,
             AppDB::class.java,
            AppDB.DB_NAME
-        ).build()
+        )
+            .fallbackToDestructiveMigration()
+            .build()
     }
 
     @Provides

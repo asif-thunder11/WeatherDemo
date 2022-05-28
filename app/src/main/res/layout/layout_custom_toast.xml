@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat android:id="@+id/layout_toast"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="16dp"
+    android:background="@drawable/rounded_solid_grey_bg"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:paddingHorizontal="8dp"
+    android:visibility="visible"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/image_tick"
+        android:layout_width="24dp"
+        android:layout_height="match_parent"
+        android:src="@drawable/ic_tick"
+        android:layout_marginRight="4dp"
+        android:paddingVertical="6dp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_toast_msg"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
+        android:layout_weight="5"
+        android:fontFamily="@font/font_regular"
+        android:gravity="center_horizontal"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        tools:text="Toas message"
+        android:layout_marginHorizontal="2dp"
+        android:layout_marginRight="8dp"/>
+
+</androidx.appcompat.widget.LinearLayoutCompat>

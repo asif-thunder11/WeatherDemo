@@ -1,7 +1,7 @@
 package com.thunderApps.weatherDemo.data.repository
 
 import android.util.Log
-import com.thunderApps.weatherDemo.data.dto.WeatherDataResponse
+import com.thunderApps.weatherDemo.data.dto.WeatherApiResponse
 import com.thunderApps.weatherDemo.data.error.ApiException
 import com.thunderApps.weatherDemo.data.error.SomethingWentWrong
 import com.thunderApps.weatherDemo.data.remote.api.WeatherApi
@@ -11,7 +11,7 @@ import javax.inject.Inject
 class RemoteRepo @Inject constructor(private val weatherApi: WeatherApi) : RemoteRepositorySource {
     private val TAG = "RemoteRepo"
 
-    override suspend fun fetchWeatherData(lat: Float, lon: Float): WeatherDataResponse {
+    override suspend fun fetchWeatherData(lat: Float, lon: Float): WeatherApiResponse {
         val response = weatherApi.getWeatherData(lat, lon)
         Log.d(TAG, "fetchWeatherData: response: $response")
         if (response.isSuccessful) {

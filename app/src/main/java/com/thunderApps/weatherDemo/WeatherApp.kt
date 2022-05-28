@@ -2,38 +2,43 @@ package com.thunderApps.weatherDemo
 
 import android.app.Application
 import android.util.Log
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.*
+import androidx.lifecycle.ProcessLifecycleOwner
 import com.squareup.moshi.Moshi
 import com.thunderApps.weatherDemo.util.ConnectionHelper
 import com.thunderApps.weatherDemo.util.ConnectionStateListener
 import dagger.hilt.android.HiltAndroidApp
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.flow
-import javax.inject.Inject
 
 @HiltAndroidApp
-class WeatherApp : Application(), ConnectionStateListener {
+class WeatherApp : Application(), ConnectionStateListener, LifecycleEventObserver {
     private val TAG = "WeatherApp"
 
     private lateinit var connectionHelper: ConnectionHelper
-    val networkStateLiveData = MutableLiveData<Boolean>()
 
     override fun onCreate() {
         super.onCreate()
-        connectionHelper = ConnectionHelper(applicationContext, this).apply { startListening() }
+        connectionHelper = ConnectionHelper(applicationContext, this)
+        connectionHelper.startListening()
+        ProcessLifecycleOwner.get().lifecycle.addObserver(this)
     }
 
     override fun initialState(isConnected: Boolean) {
-        networkStateLiveData.postValue(isConnected)
+        Log.d(TAG, "initialState: $isConnected")
+        _networkState.postValue(isConnected)
     }
 
     override fun onStateChange(isConnected: Boolean) {
         Log.d(TAG, "onStateChange: $isConnected")
-        networkStateLiveData.postValue(isConnected)
+        _networkState.postValue(isConnected)
+    }
+
+    override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
+        Log.d(TAG, "onLifecycleStateChanged: ${event.name}")
     }
 
     companion object {
         lateinit var moshi: Moshi
+        private val _networkState = MutableLiveData<Boolean>()
+        val networkState = _networkState as LiveData<Boolean>
     }
 }

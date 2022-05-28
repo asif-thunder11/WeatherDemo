@@ -4,4 +4,59 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.weather.MainActivity"/>
+    tools:context=".ui.weather.MainActivity">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_network_state"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TextNormal"
+        android:textColor="@color/white"
+        tools:text="Connection online"
+        android:gravity="center"
+        android:background="@color/green_00"
+        app:layout_constraintTop_toTopOf="parent"
+        android:paddingVertical="8dp"
+        android:paddingHorizontal="16dp"
+        tools:visibility="visible"
+        android:visibility="gone"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/weather_list"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/text_network_state"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/layout_progress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <ProgressBar
+            android:id="@+id/progress_circular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/loading_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/TextTitle"
+            tools:text="Loading..."
+            android:gravity="center"
+            android:layout_marginTop="8dp" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
