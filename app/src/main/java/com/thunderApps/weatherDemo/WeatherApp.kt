@@ -29,11 +29,12 @@ class WeatherApp : Application(), ConnectionStateListener, LifecycleEventObserve
         _networkState.postValue(isConnected)
     }
 
-    override fun onStateChange(isConnected: Boolean) {
+    override fun onNetworkStateChange(isConnected: Boolean) {
         Log.d(TAG, "onStateChange: $isConnected")
         _networkState.postValue(isConnected)
     }
 
+    // lifecycle state change
     override fun onStateChanged(source: LifecycleOwner, event: Lifecycle.Event) {
         Log.d(TAG, "onLifecycleStateChanged: ${event.name}")
     }

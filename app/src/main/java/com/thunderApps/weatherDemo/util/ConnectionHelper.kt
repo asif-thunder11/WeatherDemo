@@ -30,7 +30,7 @@ class ConnectionHelper(private val appContext: Context, val listener: Connection
                 } else fallbackNetworkInfo?.isConnected == true
 
             if (currentState != state) {
-                listener.onStateChange(state)
+                listener.onNetworkStateChange(state)
                 currentState = state
             }
         }
@@ -54,5 +54,5 @@ class ConnectionHelper(private val appContext: Context, val listener: Connection
 /** Listener for subscribing to network state published by [ConnectionHelper] */
 interface ConnectionStateListener {
     fun initialState(isConnected: Boolean)
-    fun onStateChange(isConnected: Boolean)
+    fun onNetworkStateChange(isConnected: Boolean)
 }
