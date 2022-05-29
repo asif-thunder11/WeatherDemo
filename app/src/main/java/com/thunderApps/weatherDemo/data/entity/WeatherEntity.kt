@@ -5,16 +5,15 @@ import androidx.room.PrimaryKey
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.thunderApps.weatherDemo.WeatherApp
 import com.thunderApps.weatherDemo.data.dto.*
 
 /** Entity class for saving Weather data in DB*/
 @Entity
 data class WeatherEntity(
-    @PrimaryKey var dt: Long,
+    @PrimaryKey var dt: Long,       // weather data timestamp
     var lat: Float,
     var lon: Float,
-    var weatherDescriptions: List<WeatherDescription>,
+    var weatherDescriptions: List<WeatherDescription>,      // saving as string for simplicity
     var base: String,
     var temp: Float,
     var feels_like: Float?,
@@ -32,7 +31,7 @@ data class WeatherEntity(
     var timezone: Int
 )
 
-/**Extension class to map WeatherEntity to WeatherApiResponse*/
+/**Extension function to map WeatherEntity to WeatherApiResponse*/
 fun WeatherEntity.toWeatherApiResponse(): WeatherApiResponse {
     return WeatherApiResponse(
         Coord(lat, lon),
@@ -50,7 +49,7 @@ fun WeatherEntity.toWeatherApiResponse(): WeatherApiResponse {
 }
 
 /** Converter class for converting list of [WeatherDescription] to save in DB*/
-class WeatherDescriptionConverter() {
+class WeatherDescriptionConverter {
     @TypeConverter
     fun weatherToString(weatherDescs: List<WeatherDescription>): String {
         return Gson().toJson(weatherDescs, object : TypeToken<List<WeatherDescription>>() {}.type)

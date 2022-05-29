@@ -1,14 +1,13 @@
 package com.thunderApps.weatherDemo.util
 
-import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 object DateTimeUtil {
 
-    val dateFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("MMM dd")
+    val dateFormatter: DateTimeFormatter = DateTimeFormatter.ofPattern("MMM dd, h:mm a")
 
-    fun LocalDateTime.toFormattedString_MMM_dd(): String {
+    fun LocalDateTime.toFormattedString_MMM_dd_h_mm(): String {
         try {
             return dateFormatter.format(this)
         } catch (e: Exception) {

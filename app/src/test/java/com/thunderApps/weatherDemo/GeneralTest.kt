@@ -1,14 +1,12 @@
 package com.thunderApps.weatherDemo
 
-import android.util.Log
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import com.thunderApps.weatherDemo.data.dto.WeatherApiResponse
+import com.thunderApps.weatherDemo.util.DateTimeUtil.toFormattedString_MMM_dd_h_mm
 import org.junit.Test
-import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.OffsetDateTime
-import java.time.ZoneOffset
 
 /** Class for performing tests of common tasks */
 class GeneralTest {
@@ -33,10 +31,11 @@ class GeneralTest {
     }
 
     @Test
-    fun dateFromDt() {
-        val dt = 1653763496L
+    fun dateFromDtEpoch() {
+        val dt = 1653794807L
         val date = LocalDateTime.ofEpochSecond(dt, 0, OffsetDateTime.now().offset)
         println(date)
+        println(date.toFormattedString_MMM_dd_h_mm())
         assert(true)
     }
 

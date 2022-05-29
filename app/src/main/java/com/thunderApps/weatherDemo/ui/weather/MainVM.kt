@@ -52,9 +52,7 @@ class MainVM @Inject constructor(
             } catch (e: Exception) {
                 onError(SomethingWentWrong())
             }
-
         }
-
     }
 
     private fun onError(throwable: Throwable) {

@@ -2,6 +2,7 @@ package com.thunderApps.weatherDemo
 
 import android.app.Application
 import android.util.Log
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.*
 import androidx.lifecycle.ProcessLifecycleOwner
 import com.squareup.moshi.Moshi
@@ -17,6 +18,7 @@ class WeatherApp : Application(), ConnectionStateListener, LifecycleEventObserve
 
     override fun onCreate() {
         super.onCreate()
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)    // force light mode
         connectionHelper = ConnectionHelper(applicationContext, this)
         connectionHelper.startListening()
         ProcessLifecycleOwner.get().lifecycle.addObserver(this)

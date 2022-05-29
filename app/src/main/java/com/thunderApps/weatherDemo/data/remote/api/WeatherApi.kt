@@ -12,5 +12,6 @@ interface WeatherApi {
     @GET(".")
     suspend fun getWeatherData(@Query("lat") lat: Float,
                                @Query("lon") lon: Float,
+                               @Query("units") units: String = "metric",
                                @Query("appid") appid: String = Constants.openWeatherApiKey): Response<WeatherApiResponse>
 }

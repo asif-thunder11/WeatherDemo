@@ -1,6 +1,11 @@
 <resources>
-    <string name="app_name">WeatherDemo</string>
+    <string name="app_name">Weather News</string>
     <string name="conn_online">Connection Restored</string>
     <string name="no_internet_connection">No Internet Connection</string>
     <string name="scanning_location">Scanning Location</string>
+    <string name="temp_data">Temperature: %.2f Celsius</string>
+    <string name="date_data">Date: %s</string>
+    <string name="wind_speed">Wind Speed: %.2f</string>
+    <string name="humidity">Humidity: %.2f</string>
+    <string name="weather_description">%s in %s</string>
 </resources>
